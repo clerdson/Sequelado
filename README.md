@@ -1,3 +1,3 @@
-# Datagrid
-Datagrid opensourse manage sql postgres
+# Sequelado
+Sequelado opensourse manage sql postgres
 make in c gtk
