@@ -2,11 +2,15 @@
 #include <gtk/gtk.h>
 #include <libpq-fe.h>
 #include <stdlib.h>
+#include "do_exit.h"
+#include "create.h"
 
-void do_exit(PGconn *conn){
-PQfinish(conn);
-exit(1);
-}
+//void do_exit(PGconn *conn){
+//PQfinish(conn);
+//exit(1);
+//}
+
+void create(PGresult *res,PGconn *conn);
 
 int main() {
 
@@ -23,6 +27,26 @@ do_exit(conn);
 }
 int ver = PQserverVersion(conn);
 printf("Server version %d\n",ver);
+
+/*
+*create database
+
+res = PQexec(conn,"create database casa");
+if(PQresultStatus(res)!=PGRES_COMMAND_OK){
+printf("create database failed:%s\n",PQerrorMessage(conn));
+}else{
+printf("create database\n");
+}*/
+
+create(res, conn);
+
+res = PQexec(conn,"create table cars(name varchar(30),id_car integer)");
+if(PQresultStatus(res)!=PGRES_COMMAND_OK){
+printf("create table failed:%s\n",PQerrorMessage(conn));
+}else{
+printf("create table successfuly\n");
+}
+
 /*
 *Start with begin
 */
