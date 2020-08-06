@@ -12,8 +12,9 @@
 
 void create(PGresult *res,PGconn *conn);
 
-int main() {
+int main(int argc,char *argv[]) {
 
+GtkWidget *window ,*label;
 PGresult *res;
 int nFields; 
 int i,j;
@@ -91,8 +92,25 @@ printf("\n");
 }
 
 
+gtk_init(&argc,&argv);
+
+window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+gtk_window_set_title(GTK_WINDOW(window),"Sequelado");
 
 
+label=gtk_label_new("Hello World");
+gtk_label_set_selectable(GTK_LABEL(label),TRUE);
+
+gtk_container_add(GTK_CONTAINER(window),label);
+gtk_widget_show_all(window);
+
+
+
+
+
+
+//finish PQ and GTK
+gtk_main();
 PQclear(res);
 PQfinish(conn);
 
