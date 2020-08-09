@@ -6,10 +6,6 @@
 #include "create.h"
 
 
-//void do_exit(PGconn *conn){
-//PQfinish(conn);
-//exit(1);
-//}
 
 void create(PGresult *res,PGconn *conn);
 
